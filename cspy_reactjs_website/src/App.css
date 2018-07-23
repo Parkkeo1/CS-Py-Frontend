@@ -1,16 +1,24 @@
 html,
 body {
+  color: #FFFFFF;
   height: 100%;
   background-color: #202020;
 }
 
 body {
-  color: #C0C0C0;
   text-align: center;
 }
 
 .App {
   text-align: center;
+}
+
+.form-wrapper {
+  width: 100%;
+}
+
+.input-label {
+  margin-right: 1rem;
 }
 
 .footer {
@@ -20,8 +28,4 @@ body {
   left: 0;
   padding: 2rem;
   text-align: center;
-}
-
-.btn {
-  color: #C0C0C0;
 }

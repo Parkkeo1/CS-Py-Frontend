@@ -41,9 +41,9 @@ class SteamIdForm extends Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Your SteamID64:
-          <input placeholder='Ex. 76561198158189084' type="text" value={this.state.value} onChange={this.handleChange} />
+          <input className="text-input-box" placeholder='Ex. 76561198158189084' type="text" value={this.state.value} onChange={this.handleChange} />
+          <input className="btn btn-primary" type="submit" value="View Match Stats" />
         </label>
-        <input type="submit" value="View Match Stats" />
       </form>
     );
   }

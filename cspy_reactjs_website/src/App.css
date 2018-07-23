@@ -9,8 +9,18 @@ body {
   text-align: center;
 }
 
+input {
+  vertical-align: middle;
+}
+
 .App {
   text-align: center;
+}
+
+.text-input-box {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: 0.375rem 0.75rem;
 }
 
 .form-wrapper {

@@ -6,7 +6,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <SteamIdForm />
+        <div className='page-title-wrapper'>
+          <div className='page-title-inner'>
+            <h1 className="text-center">CS-Py</h1>
+            <p className="text-center">A Personal Performance Analytics & Tracker Tool For CS:GO</p>
+          </div>
+        </div>
+        <div className='steamid-form-wrapper'>
+          <SteamIdForm />
+        </div>
+        {/*TODO: Fix footer*/}
         <div className="footer">
           <a className="pr-4" href="https://github.com/Parkkeo1/CS-Py" target="_blank">What Is CS-Py?</a>
           <a className="pl-4" href="https://github.com/Parkkeo1" target="_blank">Developed By @Parkkeo1</a>
@@ -38,13 +47,20 @@ class SteamIdForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Your SteamID64:
-          <input className="text-input-box" placeholder='Ex. 76561198158189084' type="text" value={this.state.value} onChange={this.handleChange} />
-          <input className="btn btn-primary" type="submit" value="View Match Stats" />
-        </label>
-      </form>
+      <div className='steamid-form-inner'>
+        <label htmlFor='steamid-input'>Find Your SteamID64: <i>https://steamid.io/lookup</i></label>
+        <form onSubmit={this.handleSubmit}>
+          <label className='form-element'>
+            Your SteamID64:
+          </label>
+          <span className='form-element'>
+            <input className="text-input-box" placeholder='Ex. 76561198158189084' type="text" value={this.state.value} id='steamid-input' onChange={this.handleChange} />
+          </span>
+          <span className='form-element'>
+            <input className="btn btn-primary" type="submit" value="View Match Stats" />
+          </span>
+        </form>
+      </div>
     );
   }
 }

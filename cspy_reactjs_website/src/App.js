@@ -50,7 +50,11 @@ class SteamIdForm extends Component {
   render() {
     return (
       <div className='steamid-form-inner'>
-        <label htmlFor='steamid-input'>Find Your SteamID64: <i>https://steamid.io/lookup</i></label>
+        <label htmlFor='steamid-input'>Find Your SteamID64:
+          <a target='_blank' href='https://steamid.io/lookup'>
+            <i> https://steamid.io/lookup</i>
+          </a>
+        </label>
         <form onSubmit={this.handleSubmit}>
           <label className='form-element'>
             Your SteamID64:

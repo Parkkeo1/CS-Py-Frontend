@@ -16,9 +16,11 @@ class App extends Component {
           <SteamIdForm />
         </div>
         {/*TODO: Fix footer*/}
-        <div className="footer">
-          <a className="pr-4" href="https://github.com/Parkkeo1/CS-Py" target="_blank">What Is CS-Py?</a>
-          <a className="pl-4" href="https://github.com/Parkkeo1" target="_blank">Developed By @Parkkeo1</a>
+        <div className="footer-wrapper">
+          <div className='footer-inner'>
+            <a className="pr-4" href="https://github.com/Parkkeo1/CS-Py" target="_blank">What Is CS-Py?</a>
+            <a className="pl-4" href="https://github.com/Parkkeo1" target="_blank">Developed By @Parkkeo1</a>
+          </div>
         </div>
       </div>
     );

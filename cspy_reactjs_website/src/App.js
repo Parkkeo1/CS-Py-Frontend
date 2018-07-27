@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+import axios from 'axios'
+
 class App extends Component {
   render() {
     return (
@@ -15,7 +17,6 @@ class App extends Component {
         <div className='steamid-form-wrapper'>
           <SteamIdForm />
         </div>
-        {/*TODO: Fix footer*/}
         <div className="footer-wrapper">
           <div className='footer-inner'>
             <a className="pr-4" href="https://github.com/Parkkeo1/CS-Py" target="_blank">What Is CS-Py?</a>
@@ -44,6 +45,8 @@ class SteamIdForm extends Component {
 
   handleSubmit(event) {
     console.log(this.state.value);
+    axios.get('https://www.parkkeo1.pythonanywhere.com/api/user_data/' + this.state.value)
+         .then(response => console.log(response));
     event.preventDefault();
   }
 

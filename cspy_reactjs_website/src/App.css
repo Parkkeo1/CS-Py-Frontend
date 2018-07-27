@@ -22,7 +22,7 @@ div#root {
   height: 100%;
 }
 
-.App {
+div.App {
   display: grid;
   width: 100%;
   height: 100%;
@@ -34,7 +34,7 @@ div#root {
 
 }
 
-.page-title-wrapper {
+div.page-title-wrapper {
   grid-column-start: col-1;
   grid-column-end: col-4;
   grid-row-start: row-1;
@@ -44,37 +44,30 @@ div#root {
   position: relative;
 }
 
-.page-title-inner {
+div.page-title-inner {
+  width: 100%;
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
 }
 
-.steamid-form-wrapper {
+div.steamid-form-wrapper {
   grid-column-start: col-1;
   grid-column-end: col-4;
   grid-row-start: row-2;
   grid-row-end: row-3;
   position: relative;
+  overflow: hidden;
 }
 
-.steamid-form-inner {
+div.steamid-form-inner {
+  width: 100%;
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
 }
 
-.text-input-box {
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  padding: 0.375rem 0.75rem;
-}
-
-.form-element {
-  padding: 0 0.5rem;
-}
-
-.footer-wrapper {
+div.footer-wrapper {
   grid-column-start: col-1;
   grid-column-end: col-4;
   grid-row-start: row-4;
@@ -82,8 +75,19 @@ div#root {
   position: relative;
 }
 
-.footer-inner {
+div.footer-inner {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
 }
+
+input.text-input-box {
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  padding: 0.375rem 0.75rem;
+}
+
+span.form-element {
+  padding: 0 0.5rem;
+}
+

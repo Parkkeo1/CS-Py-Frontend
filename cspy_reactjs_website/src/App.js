@@ -45,7 +45,7 @@ class SteamIdForm extends Component {
 
   handleSubmit(event) {
     console.log(this.state.value);
-    axios.get('https://www.parkkeo1.pythonanywhere.com/api/user_data/' + this.state.value)
+    axios.get('https://parkkeo1.pythonanywhere.com/api/user_data/' + this.state.value)
          .then(response => console.log(response));
     event.preventDefault();
   }

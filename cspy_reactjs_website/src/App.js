@@ -5,6 +5,20 @@ import './App.css';
 import axios from 'axios'
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      matchData: null,
+      showTable: false
+    };
+  }
+
+  idFormCallback = (matchDataArray) => {
+    this.setState({ matchData: matchDataArray, showTable: true });
+    console.log(matchDataArray);
+    console.log("Now Displaying Data Table");
+  };
+
   render() {
     return (
       <div className="App">
@@ -15,7 +29,7 @@ class App extends Component {
           </div>
         </div>
         <div className='steamid-form-wrapper'>
-          <SteamIdForm />
+          <SteamIdForm appDataCallback={this.idFormCallback} />
         </div>
         <div className="footer-wrapper">
           <div className='footer-inner'>
@@ -46,14 +60,14 @@ class SteamIdForm extends Component {
   handleSubmit(event) {
     console.log(this.state.value);
     axios.get('http://parkkeo1.pythonanywhere.com/api/user_data/' + this.state.value)
-         .then(response => console.log(response));
+         .then(response => this.props.appDataCallback(response.data));
     event.preventDefault();
   }
 
   render() {
     return (
       <div className='steamid-form-inner'>
-        <label htmlFor='steamid-input'>Find Your SteamID64:
+        <label>Find Your SteamID64:
           <a target='_blank' href='https://steamid.io/lookup'>
             <i> https://steamid.io/lookup</i>
           </a>

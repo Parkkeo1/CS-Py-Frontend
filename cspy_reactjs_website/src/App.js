@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import DataDisplay from './DataDisplay'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -30,6 +32,9 @@ class App extends Component {
         </div>
         <div className='steamid-form-wrapper'>
           <SteamIdForm appDataCallback={this.idFormCallback} />
+        </div>
+        <div className='display-results-wrapper'>
+          <DataDisplay />
         </div>
         <div className="footer-wrapper">
           <div className='footer-inner'>
@@ -80,7 +85,7 @@ class SteamIdForm extends Component {
             <input className="text-input-box" placeholder='Ex. 76561198158189084' type="text" value={this.state.value} id='steamid-input' onChange={this.handleChange} />
           </span>
           <span className='form-element'>
-            <input className="btn btn-primary" type="submit" value="View Match Stats" />
+            <input className="btn btn-blue" type="submit" value="View Match Stats" />
           </span>
         </form>
       </div>

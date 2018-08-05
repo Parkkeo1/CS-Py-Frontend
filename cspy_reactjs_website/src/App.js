@@ -10,13 +10,12 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      matchData: null,
-      showTable: false
+      matchData: []
     };
   }
 
   idFormCallback = (matchDataArray) => {
-    this.setState({ matchData: matchDataArray, showTable: true });
+    this.setState({ matchData: matchDataArray });
     console.log(matchDataArray);
     console.log("Now Displaying Data Table");
   };
@@ -34,7 +33,7 @@ class App extends Component {
           <SteamIdForm appDataCallback={this.idFormCallback} />
         </div>
         <div className='display-results-wrapper'>
-          <DataDisplay />
+          <DataDisplay matchData={this.state.matchData} />
         </div>
         <div className="footer-wrapper">
           <div className='footer-inner'>

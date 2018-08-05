@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -8,64 +8,110 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+import './Table.css';
+
+function unix_to_datetime(unix_timestamp) {
+  let dt = new Date(unix_timestamp * 1000);
+  let month = dt.getMonth();
+  if (month < 10) {
+    month = '0' + month;
+  } else {
+    month = month.toString();
+  }
+
+  let date = dt.getDate();
+  if (date < 10) {
+    date = '0' + date;
+  } else {
+    date = date.toString();
+  }
+
+  let hours = dt.getHours();
+  if (hours < 10) {
+    hours = '0' + hours;
+  } else {
+    hours = hours.toString();
+  }
+
+  let minutes = dt.getMinutes();
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  } else {
+    minutes = minutes.toString();
+  }
+
+  return month + '/' + date + " " + hours + ':' + minutes;
+}
+
+function format_map_name(de_map_name) {
+  let map_name = de_map_name.slice(3);
+  return map_name.charAt(0).toUpperCase() + map_name.slice(1);
+}
+
 const styles = theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-  },
-  table: {
-    minWidth: 700,
-  },
+  }
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: '#2196f3',
+    color: theme.palette.common.white,
+  },
+}))(TableCell);
 
-const data = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+class SimpleTable extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-function SimpleTable(props) {
-  const { classes } = props;
+  render() {
+    const { classes } = this.props;
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(n => {
-            return (
-              <TableRow key={n.id}>
-                <TableCell component="th" scope="row">
-                  {n.name}
-                </TableCell>
-                <TableCell numeric>{n.calories}</TableCell>
-                <TableCell numeric>{n.fat}</TableCell>
-                <TableCell numeric>{n.carbs}</TableCell>
-                <TableCell numeric>{n.protein}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </Paper>
-  );
+    return (
+      <Paper className={classes.root}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <CustomTableCell>Map</CustomTableCell>
+              <CustomTableCell>Start</CustomTableCell>
+              <CustomTableCell>End</CustomTableCell>
+              <CustomTableCell>K / A / D</CustomTableCell>
+              <CustomTableCell>HLTV Rating 1.0</CustomTableCell>
+              <CustomTableCell>KAS %</CustomTableCell>
+              <CustomTableCell>Headshot %</CustomTableCell>
+              <CustomTableCell>Kills/Round</CustomTableCell>
+              <CustomTableCell>KDR</CustomTableCell>
+              <CustomTableCell>KDA</CustomTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {this.props.matchData.map(match => {
+              return (
+                <TableRow key={match['Match_ID']}>
+                  <CustomTableCell component="th" scope="row">{format_map_name(match['Map'])}</CustomTableCell>
+                  <CustomTableCell>{unix_to_datetime(match['Start'])}</CustomTableCell>
+                  <CustomTableCell>{unix_to_datetime(match['End'])}</CustomTableCell>
+                  <CustomTableCell>{match['Kills']} / {match['Assists']} / {match['Deaths']}</CustomTableCell>
+                  <CustomTableCell style={{ color: match['Rating1'] > 1 ? '#6CC644' : '#BD2C00' }}>
+                    {match['Rating1']}</CustomTableCell>
+                  <CustomTableCell>{match['KAS']}</CustomTableCell>
+                  <CustomTableCell>{match['HSR']}</CustomTableCell>
+                  <CustomTableCell>{match['KPR']}</CustomTableCell>
+                  <CustomTableCell style={{ color: match['KDR'] > 1 ? '#6CC644' : '#BD2C00' }}>
+                    {match['KDR']}</CustomTableCell>
+                  <CustomTableCell>{match['KDA']}</CustomTableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
 }
 
 SimpleTable.propTypes = {

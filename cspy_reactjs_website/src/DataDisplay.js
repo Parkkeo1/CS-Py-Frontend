@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+
+import SimpleTable from './Table';
 
 const tabStyles = theme => ({
   root: {
@@ -31,10 +33,13 @@ const tabStyles = theme => ({
   tabSelected: {},
 });
 
-class DataDisplay extends React.Component {
-  state = {
-    value: 0,
-  };
+class DataDisplay extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    };
+  }
 
   handleChange = (event, value) => {
     this.setState({ value });
@@ -55,19 +60,15 @@ class DataDisplay extends React.Component {
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 1"
+            label="All Matches"
           />
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 2"
-          />
-          <Tab
-            disableRipple
-            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
-            label="Tab 3"
+            label="Performance Summary"
           />
         </Tabs>
+        {value === 0 && <SimpleTable matchData={this.props.matchData} />}
       </div>
     );
   }

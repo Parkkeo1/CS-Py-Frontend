@@ -60,6 +60,7 @@ const CustomTableCell = withStyles(theme => ({
   head: {
     backgroundColor: '#2196f3',
     color: theme.palette.common.white,
+    fontWeight: 300,
   },
 }))(TableCell);
 
@@ -79,13 +80,14 @@ class SimpleTable extends Component {
               <CustomTableCell>Map</CustomTableCell>
               <CustomTableCell>Start</CustomTableCell>
               <CustomTableCell>End</CustomTableCell>
-              <CustomTableCell>K / A / D</CustomTableCell>
-              <CustomTableCell>HLTV Rating 1.0</CustomTableCell>
-              <CustomTableCell>KAS %</CustomTableCell>
+              <CustomTableCell>Kills</CustomTableCell>
+              <CustomTableCell>Assists</CustomTableCell>
+              <CustomTableCell>Deaths</CustomTableCell>
+              <CustomTableCell style={{ fontWeight: 500 }}>HLTV Rating 1.0</CustomTableCell>
+              <CustomTableCell style={{ fontWeight: 500 }}>KAS %</CustomTableCell>
               <CustomTableCell>Headshot %</CustomTableCell>
               <CustomTableCell>Kills/Round</CustomTableCell>
               <CustomTableCell>KDR</CustomTableCell>
-              <CustomTableCell>KDA</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -95,7 +97,9 @@ class SimpleTable extends Component {
                   <CustomTableCell component="th" scope="row">{format_map_name(match['Map'])}</CustomTableCell>
                   <CustomTableCell>{unix_to_datetime(match['Start'])}</CustomTableCell>
                   <CustomTableCell>{unix_to_datetime(match['End'])}</CustomTableCell>
-                  <CustomTableCell>{match['Kills']} / {match['Assists']} / {match['Deaths']}</CustomTableCell>
+                  <CustomTableCell>{match['Kills']}</CustomTableCell>
+                  <CustomTableCell>{match['Assists']}</CustomTableCell>
+                  <CustomTableCell>{match['Deaths']}</CustomTableCell>
                   <CustomTableCell style={{ color: match['Rating1'] > 1 ? '#6CC644' : '#BD2C00' }}>
                     {match['Rating1']}</CustomTableCell>
                   <CustomTableCell>{match['KAS']}</CustomTableCell>
@@ -103,7 +107,6 @@ class SimpleTable extends Component {
                   <CustomTableCell>{match['KPR']}</CustomTableCell>
                   <CustomTableCell style={{ color: match['KDR'] > 1 ? '#6CC644' : '#BD2C00' }}>
                     {match['KDR']}</CustomTableCell>
-                  <CustomTableCell>{match['KDA']}</CustomTableCell>
                 </TableRow>
               );
             })}

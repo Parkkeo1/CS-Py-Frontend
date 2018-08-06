@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 
 import SimpleTable from './Table';
 
@@ -39,6 +40,8 @@ class DataDisplay extends Component {
     this.state = {
       value: 0
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (event, value) => {
@@ -52,8 +55,7 @@ class DataDisplay extends Component {
     return (
       <div className={classes.root}>
         <Tabs
-          value={value}
-          onChange={this.handleChange}
+          value={value} onChange={this.handleChange}
           classes={{ root: classes.tabsRoot, indicator: classes.tabsIndicator }}
           centered
         >
@@ -68,7 +70,8 @@ class DataDisplay extends Component {
             label="Performance Summary"
           />
         </Tabs>
-        {value === 0 && <SimpleTable matchData={this.props.matchData} />}
+        {value === 0 && this.props.showData ? <SimpleTable matchData={this.props.matchData} /> : null}
+        {value === 1 && this.props.showData ? <Typography component="div" style={{ padding: 8 * 3 }}>Hi</Typography> : null}
       </div>
     );
   }

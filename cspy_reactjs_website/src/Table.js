@@ -67,17 +67,17 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 const columns = [
-  { id: 'map', label: 'Map', isBold: false, tooltip: 'Map' },
-  { id: 'start', label: 'Start', isBold: false, tooltip: 'Start time in UTC' },
-  { id: 'end', label: 'End', isBold: false, tooltip: 'End time in UTC' },
-  { id: 'kills', label: 'Kills', isBold: false, tooltip: 'Kills' },
-  { id: 'assists', label: 'Assists', isBold: false, tooltip: 'Assists' },
-  { id: 'deaths', label: 'Deaths', isBold: false, tooltip: 'Deaths' },
-  { id: 'rating', label: 'Rating', isBold: true, tooltip: 'HLTV.org\'s Player Rating 1.0 Formula' },
-  { id: 'kas', label: 'KAS', isBold: true, tooltip: '% of rounds in which player got a kill or assist, or survived' },
-  { id: 'hsr', label: 'HSR', isBold: false, tooltip: 'Ratio of kills that ended in a headshot' },
-  { id: 'kpr', label: 'Kills/Round', isBold: false, tooltip: 'Average kills per round' },
-  { id: 'kdr', label: 'KDR', isBold: false, tooltip: 'Kill-death ratio' }
+  { id: 'Map', label: 'Map', isBold: false, tooltip: 'Map' },
+  { id: 'Start', label: 'Start', isBold: false, tooltip: 'Start time in UTC' },
+  { id: 'End', label: 'End', isBold: false, tooltip: 'End time in UTC' },
+  { id: 'Kills', label: 'Kills', isBold: false, tooltip: 'Kills' },
+  { id: 'Assists', label: 'Assists', isBold: false, tooltip: 'Assists' },
+  { id: 'Deaths', label: 'Deaths', isBold: false, tooltip: 'Deaths' },
+  { id: 'Rating1', label: 'Rating', isBold: true, tooltip: 'HLTV.org\'s Player Rating 1.0 Formula' },
+  { id: 'KAS', label: 'KAS', isBold: true, tooltip: '% of rounds in which player got a kill or assist, or survived' },
+  { id: 'HSR', label: 'HSR', isBold: false, tooltip: 'Ratio of kills that ended in a headshot' },
+  { id: 'KPR', label: 'Kills/Round', isBold: false, tooltip: 'Average kills per round' },
+  { id: 'KDR', label: 'KDR', isBold: false, tooltip: 'Kill-death ratio' }
 ];
 
 class SortableTableHead extends Component {
@@ -95,14 +95,13 @@ class SortableTableHead extends Component {
             return (
               <CustomTableCell
                 key={column.id}
-                padding='default'
                 sortDirection={orderBy === column.id ? order : false}
                 style={column.isBold ? {fontWeight: 500} : null }
               >
                 <Tooltip
                   title={column.tooltip}
                   placement='bottom-start'
-                  enterDelay={100}
+                  enterDelay={200}
                 >
                   <TableSortLabel
                     active={orderBy === column.id}
@@ -137,7 +136,7 @@ class SortableTable extends Component {
 
     this.state = {
       order: 'asc',
-      orderBy: null,
+      orderBy: 'start',
     };
   }
 

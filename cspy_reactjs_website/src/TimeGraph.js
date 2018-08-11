@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from 'victory';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 class LineChart extends Component {
   constructor(props) {
@@ -53,11 +53,16 @@ class DataGraphs extends Component {
       <Paper>
         {statsToGraph.map((statistic, statIndex) => {
           return (
+            <div>
+              <Typography component="div" style={{ paddingTop: 20, paddingBottom: 0 }}>
+                Player's {statistic} vs. Time
+              </Typography>
               <LineChart
                 key={statIndex}
                 chartData={formatDataForChart(this.props.matchData, statistic)}
                 chartLabel={statistic}
               />
+            </div>
           );
         })}
       </Paper>

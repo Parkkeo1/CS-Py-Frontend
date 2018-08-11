@@ -15,6 +15,9 @@ class LineChart extends Component {
         theme={VictoryTheme.material}>
         <VictoryAxis dependentAxis />
         <VictoryLine
+          style={{
+            data: { stroke: '#2196f3' }
+          }}
           data={this.props.chartData}
           x='End'
           y={this.props.chartLabel}

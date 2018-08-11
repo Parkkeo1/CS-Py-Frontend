@@ -67,17 +67,17 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 const columns = [
-  { id: 'Map', label: 'Map', isBold: false, tooltip: 'Map' },
-  { id: 'Start', label: 'Start', isBold: false, tooltip: 'Start time in UTC' },
-  { id: 'End', label: 'End', isBold: false, tooltip: 'End time in UTC' },
-  { id: 'Kills', label: 'Kills', isBold: false, tooltip: 'Kills' },
-  { id: 'Assists', label: 'Assists', isBold: false, tooltip: 'Assists' },
-  { id: 'Deaths', label: 'Deaths', isBold: false, tooltip: 'Deaths' },
-  { id: 'Rating1', label: 'Rating', isBold: true, tooltip: 'HLTV.org\'s Player Rating 1.0 Formula' },
-  { id: 'KAS', label: 'KAS', isBold: true, tooltip: '% of rounds in which player got a kill or assist, or survived' },
-  { id: 'HSR', label: 'HSR', isBold: false, tooltip: 'Ratio of kills that ended in a headshot' },
-  { id: 'KPR', label: 'Kills/Round', isBold: false, tooltip: 'Average kills per round' },
-  { id: 'KDR', label: 'KDR', isBold: false, tooltip: 'Kill-death ratio' }
+  { id: 'Map', isBold: false, tooltip: 'Map' },
+  { id: 'Start', isBold: false, tooltip: 'Start time in UTC' },
+  { id: 'End', isBold: false, tooltip: 'End time in UTC' },
+  { id: 'Kills', isBold: false, tooltip: 'Kills' },
+  { id: 'Assists', isBold: false, tooltip: 'Assists' },
+  { id: 'Deaths', isBold: false, tooltip: 'Deaths' },
+  { id: 'Rating1', isBold: true, tooltip: 'HLTV.org\'s Player Rating 1.0 Formula' },
+  { id: 'KAS', isBold: true, tooltip: '% of rounds in which player got a kill or assist, or survived' },
+  { id: 'HSR', isBold: false, tooltip: 'Ratio of kills that ended in a headshot' },
+  { id: 'KPR', isBold: false, tooltip: 'Average kills per round' },
+  { id: 'KDR', isBold: false, tooltip: 'Kill-death ratio' }
 ];
 
 class SortableTableHead extends Component {
@@ -108,7 +108,7 @@ class SortableTableHead extends Component {
                     direction={order}
                     onClick={this.createSortHandler(column.id)}
                   >
-                    {column.label}
+                    {column.id}
                   </TableSortLabel>
                 </Tooltip>
               </CustomTableCell>
@@ -171,7 +171,8 @@ class SortableTable extends Component {
                   <CustomTableCell>{match['Deaths']}</CustomTableCell>
                   <CustomTableCell style={{ color: match['Rating1'] > 1 ? '#6CC644' : '#BD2C00' }}>
                     {match['Rating1']}</CustomTableCell>
-                  <CustomTableCell>{match['KAS']}</CustomTableCell>
+                  <CustomTableCell style={{ color: match['KAS'] > 65 ? '#6CC644' : '#BD2C00' }}>
+                    {match['KAS']}</CustomTableCell>
                   <CustomTableCell>{match['HSR']}</CustomTableCell>
                   <CustomTableCell>{match['KPR']}</CustomTableCell>
                   <CustomTableCell style={{ color: match['KDR'] > 1 ? '#6CC644' : '#BD2C00' }}>

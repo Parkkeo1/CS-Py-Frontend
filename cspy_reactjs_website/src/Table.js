@@ -136,7 +136,7 @@ class SortableTable extends Component {
 
     this.state = {
       order: 'asc',
-      orderBy: 'start',
+      orderBy: 'Start',
     };
   }
 

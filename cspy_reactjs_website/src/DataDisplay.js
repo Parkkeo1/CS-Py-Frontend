@@ -5,7 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import SimpleTable from './Table';
+import DataTable from './Table';
+import DataGraphs from './TimeGraph';
 
 const tabStyles = theme => ({
   root: {
@@ -67,11 +68,16 @@ class DataDisplay extends Component {
           <Tab
             disableRipple
             classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
+            label="Stats Over Time"
+          />
+          <Tab
+            disableRipple
+            classes={{ root: classes.tabRoot, selected: classes.tabSelected }}
             label="Performance Summary"
           />
         </Tabs>
-        {value === 0 && this.props.showData ? <SimpleTable matchData={this.props.matchData} /> : null}
-        {value === 1 && this.props.showData ? <Typography component="div" style={{ padding: 8 * 3 }}>Hi</Typography> : null}
+        {value === 0 && this.props.showData ? <DataTable matchData={this.props.matchData} /> : null}
+        {value === 1 && this.props.showData ? <DataGraphs matchData={this.props.matchData} /> : null}
       </div>
     );
   }
